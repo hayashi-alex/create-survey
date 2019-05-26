@@ -1,29 +1,40 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang="pug">
+  .container
+    .columns
+      draggable(v-model="forms").main-field.column.is-three-fifths.is-offset-one-fifth
+        .box(v-for="(element, index) in forms" :key="index")
+          b-field
+            b-input(v-model="element.title")
+          b-field
+            b-input
+    a(@click="addForm").button.is-success.is-medium.is-three-fifths add
+    div {{ forms }}
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import draggable from 'vuedraggable';
+
+@Component({
+  components: {
+    draggable,
+  },
+})
+export default class Index extends Vue {
+  private forms: { id: number; title: string; }[] = [
+    {
+      id: 0,
+      title: '',
+    },
+  ];
+
+  inputValue: string = '';
+
+  public addForm() {
+    const formId: number[] = this.forms.map((x) => x.id);
+    const maxVal = Math.max.apply(null, formId);
+    this.forms.push({ id: maxVal + 1, title: '' });
   }
 }
-</style>
+</script>
