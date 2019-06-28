@@ -1,18 +1,18 @@
 <template lang="pug">
   div
-    navbar
+    footer-items
     router-view
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import navbar from '@/components/Navbar.vue'
+import FooterItems from '@/components/FooterItems.vue'
 
 @Component({
   components: {
-    navbar,
+    FooterItems,
   },
 })
-export default class Index extends Vue {
+export default class App extends Vue {
 }
 </script>

@@ -1,10 +1,4 @@
 <template lang="pug">
   div
-    h1 coming soon
+    div hogehoge
 </template>
-
-
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-</script>

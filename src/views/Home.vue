@@ -1,7 +1,8 @@
 <template lang="pug">
   .container
-    b-button(@click="addForm").is-success.is-medium.main-field add
     .columns.is-multiline
+      b-button(@click="addForm").is-success.is-medium.main-field.culumn add
+      b-button(@click="registForm").is-success.is-medium.main-field.culumn regist
       draggable(
         v-model="forms"
         v-bind="dragOption"
@@ -33,8 +34,8 @@ import draggable from 'vuedraggable';
     draggable,
   },
 })
-export default class Index extends Vue {
-  private forms: { id: number; title: string; formType: string; isRequired: boolean; }[] = [
+export default class App extends Vue {
+  private forms: Array<{ id: number; title: string; formType: string; isRequired: boolean; }> = [
     {
       id: 0,
       title: '',
@@ -43,14 +44,14 @@ export default class Index extends Vue {
     },
   ];
 
-  private dragOption: { animation: number; group: string; disabled: boolean; ghostClass: string;}[] = [
+  private dragOption: Array<{ animation: number; group: string; disabled: boolean; ghostClass: string; }> = [
     {
       animation: 200,
-      group: "description",
+      group: 'description',
       disabled: false,
-      ghostClass: "ghost"
-    }
-  ]
+      ghostClass: 'ghost',
+    },
+  ];
 
   private formTypes: string[] = [
     'input',
@@ -61,15 +62,20 @@ export default class Index extends Vue {
 
   private inputValue: string = '';
 
-  public addForm() {
+  private addForm() {
     const formId: number[] = this.forms.map((x) => x.id);
     const maxVal = Math.max.apply(null, formId);
     this.forms.push({ id: maxVal + 1, title: '', formType: 'input', isRequired: false });
   }
 
-  public delForm(index: number) {
-      if(this.forms.length > 1) this.forms.splice(index, 1)
+  private delForm(index: number) {
+    if (this.forms.length > 1) { this.forms.splice(index, 1); }
   }
+
+  private registForm() {
+
+  }
+
 }
 </script>
 

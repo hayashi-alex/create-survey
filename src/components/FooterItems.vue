@@ -14,7 +14,7 @@
       #navbarBasicExample.navbar-menu
         .navbar-start
           router-link(to="/").navbar-item Create
-          router-link(to="result").navbar-item Result
+          router-link(to="/result").navbar-item Result
 
 </template>
 
@@ -22,7 +22,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-export default class Navbar extends Vue {
-
+export default class FooterItems extends Vue {
 }
+
+
 </script>
